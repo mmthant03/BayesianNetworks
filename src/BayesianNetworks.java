@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Random;
+
 import Structure.Node;
 import Structure.TableEntry;
 
@@ -17,12 +19,16 @@ public class BayesianNetworks {
     		return;
     	} else if(args.length < 2) {
     		System.out.println("Missing query file argument");
+		} else if(args.length < 3) {
+    		System.out.println("Missing number of samples to be generated");
 		}
-    	
     	// define variables
     	String inputFileName = args[0];
     	String queryFileName = "";
+    	int num_samples = 0;
+
     	if(args[1] != null) queryFileName = args[1];
+    	if(args[2] != null) num_samples = Integer.parseInt(args[2]);
     	
     	//read file
     	try {
@@ -127,12 +133,9 @@ public class BayesianNetworks {
 					queries.add(q);
 				}
 			}
-
 			for(int k = 0 ; k < nodeList.size() ; k++) {
 				nodeList.get(k).setStatus(queries.get(k));
 			}
-
-
 
 		} catch(Exception e) {
 			System.out.println("Exception thrown: error reading query file");
@@ -140,13 +143,22 @@ public class BayesianNetworks {
 			return;
 		}
 
-
-
     }
 
+    // get the node index from node name
     public static int getNodeNum(String nodeName) {
     	if(nodeName == "" || nodeName.length() < 1) return -1;
     	return ((int) nodeName.charAt(4)) - 48;
 	}
+
+	// random number generator
+	// generate a double value between 0 and 1.
+	public static double randNodeValue() {
+
+		double randomValue = Math.random();
+		System.out.println(randomValue);
+		return randomValue;
+	}
+
 
 }

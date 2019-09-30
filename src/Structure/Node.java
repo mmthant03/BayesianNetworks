@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Node {
     public String name;
     public int index;
+    public double value;
     public ArrayList<Node> parents;
     public ArrayList<TableEntry> cpt;
     public String status;
@@ -39,6 +40,10 @@ public class Node {
     }
     public void addParents(TableEntry te) {
         this.cpt.add(te);
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public void setStatus(String status) {
