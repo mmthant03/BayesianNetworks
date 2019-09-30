@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Structure.Event;
 import Structure.Node;
 import Structure.TableEntry;
 
@@ -158,6 +159,58 @@ public class BayesianNetworks {
 		double randomValue = Math.random();
 		System.out.println(randomValue);
 		return randomValue;
+	}
+	
+	//generates random samples for the boolean network
+	public Event priorSample() {
+		Event event = new Event();
+		
+		for(int i = 0; i < nodeList.size(); i++) {
+			Node checkNode = nodeList.get(i);
+			
+			event = priorSampleHelper(event, checkNode);
+		}
+		
+		return event;
+	}
+	
+	//recursive helper for priorSample()
+	public Event priorSampleHelper(Event event, Node node) {
+		
+		if(event.values.containsKey(node.name)) {
+			return event;
+		}
+		
+		double prob;
+		
+		if(node.parents.size() > 0) {
+			ArrayList<Boolean> boolList = new ArrayList<Boolean>();
+			
+			for(int j = 0; j < node.parents.size(); j++) {
+				Node currentParent = node.parents.get(j);
+				if(event.values.containsKey(currentParent.name)) {
+					continue;
+				} else {
+					event = priorSampleHelper(event, currentParent);
+				}
+				boolList.add(event.values.get(currentParent.name));
+			}
+			
+			//assign probability
+			//place holder code, need to talk to myo about binary
+			prob = node.cpt.get(0).probability;
+		} else {
+			//get probability of node = true
+			prob = node.cpt.get(0).probability;
+		}
+		
+		if(randNodeValue() <= prob) {
+			event.setValue(node.name, Boolean.valueOf(true));
+		} else {
+			event.setValue(node.name, Boolean.valueOf(false));
+		}
+		
+		return event;
 	}
 
 
