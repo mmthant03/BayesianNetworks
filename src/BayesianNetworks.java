@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import Structure.Node;
-import Structure.Table;
 import Structure.TableEntry;
 
 public class BayesianNetworks {
