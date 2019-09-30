@@ -11,7 +11,6 @@ public class TableEntry {
     public TableEntry() {
     }
 
-
     public TableEntry(int index, double prob) {
         this.index = index;
         this.probability = prob;
