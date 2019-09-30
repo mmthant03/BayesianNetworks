@@ -7,6 +7,7 @@ public class Node {
     public int index;
     public ArrayList<Node> parents;
     public ArrayList<TableEntry> cpt;
+    public String status;
 
     public Node() {
         this.name = "";
@@ -38,6 +39,10 @@ public class Node {
     }
     public void addParents(TableEntry te) {
         this.cpt.add(te);
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

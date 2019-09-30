@@ -20,6 +20,7 @@ public class TableEntry {
 
     public void saveAsBinary(int num) {
         String b = Integer.toBinaryString(num);
+        System.out.println(b);
         if (num == 0) {
             for(int i = 0; i<binary.length; i++) {
                 this.binary[i] = 0;
@@ -27,8 +28,9 @@ public class TableEntry {
         }
         int index = 2;
         if (num >0 && num <8) {
-            for (char c : b.toCharArray()) {
-                int bin = (int) c;
+            char[] cs = b.toCharArray();
+            for (int i = cs.length-1; i >= 0 ; i--) {
+                int bin = ((int) cs[i]) - 48;
                 this.binary[index] = bin;
                 index--;
                 if(index < 0) break;
@@ -38,7 +40,10 @@ public class TableEntry {
 
     @Override
     public String toString() {
-        return "{ CPT Index : " + this.index + ", Probability : " + this.probability + " }\n";
+        return "{ CPT Index : " + this.index +
+                ", Probability : " + this.probability +
+                ", Binary : " + this.binary[0]+""+this.binary[1]+""+this.binary[2]+
+                " }\n";
     }
 
 

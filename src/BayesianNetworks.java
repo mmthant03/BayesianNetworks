@@ -9,17 +9,21 @@ import Structure.TableEntry;
 
 public class BayesianNetworks {
 
-	public static ArrayList<Node> nodeList;
+	public static ArrayList<Node> nodeList = new ArrayList<>();
 
     public static void main (String [] args) {
     	// input argument
     	if(args.length < 1) {
-    		System.out.println("Missing input filename argument");
+    		System.out.println("Missing network file argument");
     		return;
-    	}
+    	} else if(args.length < 2) {
+    		System.out.println("Missing query file argument");
+		}
     	
     	// define variables
     	String inputFileName = args[0];
+    	String queryFileName = "";
+    	if(args[1] != null) queryFileName = args[1];
     	
     	//read file
     	try {
@@ -96,6 +100,7 @@ public class BayesianNetworks {
 					System.out.print(te);
 				}
 
+            	nodeList.add(newNode);
             	System.out.println();
 
 
@@ -109,6 +114,34 @@ public class BayesianNetworks {
     		e.printStackTrace();
     		return;
     	}
+
+    	// read query file
+		try{
+			File file = new File(queryFileName);
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			String line = "";
+			ArrayList<String> queries = new ArrayList<>();
+			while((line = br.readLine()) != null) {
+				String[] qs = line.split(",");
+				for (String q : qs) {
+					queries.add(q);
+				}
+			}
+
+			for(int k = 0 ; k < nodeList.size() ; k++) {
+				nodeList.get(k).setStatus(queries.get(k));
+			}
+
+
+
+		} catch(Exception e) {
+			System.out.println("Exception thrown: error reading query file");
+			e.printStackTrace();
+			return;
+		}
+
+
 
     }
 
