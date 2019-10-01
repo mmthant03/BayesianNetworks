@@ -162,11 +162,11 @@ public class BayesianNetworks {
 	}
 	
 	//generates random samples for the boolean network
-	public Event priorSample() {
+	public Event priorSample(ArrayList<Node> nodes) {
 		Event event = new Event();
 		
-		for(int i = 0; i < nodeList.size(); i++) {
-			Node checkNode = nodeList.get(i);
+		for(int i = 0; i < nodes.size(); i++) {
+			Node checkNode = nodes.get(i);
 			
 			event = priorSampleHelper(event, checkNode);
 		}
