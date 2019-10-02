@@ -124,6 +124,7 @@ public class RejectionSample {
 	}
 	
 	//helper function that normalizes the count vector of rejectionSampling
+	//returns probability
 	public double normalize(double[] vector) {
 		if(vector.length != 2) {
 			return -1;
