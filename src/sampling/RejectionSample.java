@@ -107,8 +107,16 @@ public class RejectionSample {
 			}
 			
 			//assign probability
-			//place holder code, need to talk to myo about binary
-			prob = node.cpt.get(0).probability;
+			String cptCodeString = "";
+			for(int l = 0; l < boolList.size(); l++) {
+				if(boolList.get(l)) {
+					cptCodeString = "1" + cptCodeString;
+				} else {
+					cptCodeString = "0" + cptCodeString;
+				}
+			}
+			int cptIndex = Integer.parseInt(cptCodeString, 2);
+			prob = node.cpt.get(cptIndex).probability;
 		} else {
 			//get probability of node = true
 			prob = node.cpt.get(0).probability;
