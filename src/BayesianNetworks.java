@@ -61,6 +61,7 @@ public class BayesianNetworks {
             	}
             	
             	//read node parents
+				int parCount = 0;
             	for(i = lastStop; i < line.length(); i++) {
             		if(line.charAt(i) == ']') {
             			String parHolder = line.substring(lastStop, i);
@@ -78,6 +79,7 @@ public class BayesianNetworks {
 					if(parentIndex == -1) break;
 					Node n = new Node(parent, parentIndex);
 					newNode.addParents(n);
+					parCount++;
 				}
             	
             	// read cpt
@@ -89,7 +91,7 @@ public class BayesianNetworks {
             			for(int k = 0; k < cptArr.length; k++) {
 							double prob = Double.parseDouble(cptArr[k]);
             				probabilities.add(prob);
-							TableEntry te = new TableEntry(k, prob);
+							TableEntry te = new TableEntry(k, prob, parCount);
 							entryList.add(te);
             			}
             			break;
