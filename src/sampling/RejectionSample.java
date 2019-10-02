@@ -8,7 +8,7 @@ import Structure.TableEntry;
 
 public class RejectionSample {
 	
-	ArrayList<Node> nodeList = new ArrayList<Node>();
+	ArrayList<Node> nodeList;
 	String queryVarName;
 
 	public RejectionSample(ArrayList<Node> nodeList) {
@@ -17,6 +17,7 @@ public class RejectionSample {
 		for(int i = 0; i < nodeList.size(); i++) {
 			if(nodeList.get(i).status.contains("?")) {
 				queryVarName = nodeList.get(i).name;
+				break;
 			}
 		}
 	}
@@ -98,8 +99,13 @@ public class RejectionSample {
 			
 			for(int j = 0; j < node.parents.size(); j++) {
 				Node currentParent = node.parents.get(j);
+				String parentName = node.parents.get(j).name;
+				for(int m = 0; m < nodeList.size(); m++) {
+					if(nodeList.get(m).name.contains(parentName)) {
+						currentParent = nodeList.get(m);
+					}
+				}
 				if(event.values.containsKey(currentParent.name)) {
-					continue;
 				} else {
 					event = priorSampleHelper(event, currentParent);
 				}

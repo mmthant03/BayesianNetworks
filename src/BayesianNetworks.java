@@ -40,6 +40,7 @@ public class BayesianNetworks {
 
             String line;
             int i = 0;
+            int nodeCount = 0;
             
             while((line = br.readLine()) != null) {
             	
@@ -54,8 +55,9 @@ public class BayesianNetworks {
             	for(i = 0; i < line.length(); i++) {
             		if(line.charAt(i) == ':') {
             			name = line.substring(lastStop, i);
-            			int nodeIndex = getNodeNum(name);
-            			newNode = new Node(name, nodeIndex);
+            			//int nodeIndex = getNodeNum(name);
+            			newNode = new Node(name, nodeCount);
+            			nodeCount++;
             			lastStop = i + 3;
             			break;
             		}
@@ -152,7 +154,8 @@ public class BayesianNetworks {
 		double rejectResult = rs.rejectionSampling(num_samples);
 		
 		System.out.println("By Rejection Sampling, the probability of the query variable being true is: " + rejectResult);
-
+		
+		return;
     }
 
     // get the node index from node name
