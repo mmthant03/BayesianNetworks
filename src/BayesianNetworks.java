@@ -8,6 +8,7 @@ import java.util.Random;
 import Structure.Event;
 import Structure.Node;
 import Structure.TableEntry;
+import sampling.RejectionSample;
 
 public class BayesianNetworks {
 
@@ -145,6 +146,12 @@ public class BayesianNetworks {
 			e.printStackTrace();
 			return;
 		}
+		
+		//rejection sampling
+		RejectionSample rs = new RejectionSample(nodeList);
+		double rejectResult = rs.rejectionSampling(num_samples);
+		
+		System.out.println("By Rejection Sampling, the probability of the query variable being true is: " + rejectResult);
 
     }
 

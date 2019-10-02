@@ -143,7 +143,11 @@ public class RejectionSample {
 		
 		double magnitude = Math.sqrt(scale0 + scale1);
 		
-		return vector[1] / magnitude;
+		if(magnitude != 0) {
+			return vector[1] / magnitude;
+		} else {
+			return 0;
+		}
 	}
 
 }
