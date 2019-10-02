@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+import sampling.LikelihoodWeight;
 import Structure.Event;
 import Structure.Node;
 import Structure.TableEntry;
@@ -107,14 +108,8 @@ public class BayesianNetworks {
             	for(TableEntry te : newNode.cpt) {
 					System.out.print(te);
 				}
-
             	nodeList.add(newNode);
             	System.out.println();
-
-
-            	
-            	//Construct Node here:
-            	
             }
             
     	} catch(Exception e) {
@@ -145,6 +140,12 @@ public class BayesianNetworks {
 			e.printStackTrace();
 			return;
 		}
+
+		LikelihoodWeight lw = new LikelihoodWeight(nodeList);
+		double lwProb = lw.likelihoodWeighting(num_samples);
+
+		System.out.println("Probability of " + lw.queryVarName + " by Likelihood Weighting : " + lwProb);
+
 
     }
 

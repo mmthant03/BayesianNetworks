@@ -1,5 +1,6 @@
 package Structure;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Node {
@@ -22,6 +23,26 @@ public class Node {
         this.index = index;
         this.parents = new ArrayList<>();
         this.cpt = new ArrayList<TableEntry>();
+    }
+
+    public ArrayList<Node> getParents() {
+        ArrayList<Node> pars = new ArrayList<>();
+        for(Node n : this.parents) {
+            pars.add(n);
+        }
+        return pars;
+    }
+
+    public ArrayList<TableEntry> getCPT() {
+        ArrayList<TableEntry> te = new ArrayList<TableEntry>();
+        for(TableEntry t : this.cpt) {
+            te.add(t);
+        }
+        return te;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
     }
 
     public void setParents(ArrayList<Node> parents) {
