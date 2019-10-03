@@ -9,6 +9,7 @@ import sampling.LikelihoodWeight;
 import Structure.Event;
 import Structure.Node;
 import Structure.TableEntry;
+import sampling.RejectionSample;
 
 public class BayesianNetworks {
 
@@ -40,6 +41,7 @@ public class BayesianNetworks {
 
             String line;
             int i = 0;
+            int nodeCount = 0;
             
             while((line = br.readLine()) != null) {
             	
@@ -54,8 +56,9 @@ public class BayesianNetworks {
             	for(i = 0; i < line.length(); i++) {
             		if(line.charAt(i) == ':') {
             			name = line.substring(lastStop, i);
-            			int nodeIndex = getNodeNum(name);
-            			newNode = new Node(name, nodeIndex);
+            			//int nodeIndex = getNodeNum(name);
+            			newNode = new Node(name, nodeCount);
+            			nodeCount++;
             			lastStop = i + 3;
             			break;
             		}
@@ -141,12 +144,19 @@ public class BayesianNetworks {
 			return;
 		}
 
+		//likelihoodweight
 		LikelihoodWeight lw = new LikelihoodWeight(nodeList);
 		double lwProb = lw.likelihoodWeighting(num_samples);
 
-		System.out.println("Probability of " + lw.queryVarName + " by Likelihood Weighting : " + lwProb);
-
-
+		System.out.println("By Likelihood Weighting, Probability of " + lw.queryVarName + " being true : " + lwProb);
+		
+		//rejection sampling
+		RejectionSample rs = new RejectionSample(nodeList);
+		double rejectResult = rs.rejectionSampling(num_samples);
+		
+		System.out.println("By Rejection Sampling, Probability of " + rs.queryVarName + " being true : " + rejectResult);
+		
+		return;
     }
 
     // get the node index from node name

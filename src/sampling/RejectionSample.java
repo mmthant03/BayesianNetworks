@@ -8,8 +8,8 @@ import Structure.TableEntry;
 
 public class RejectionSample {
 	
-	ArrayList<Node> nodeList = new ArrayList<Node>();
-	String queryVarName;
+	public ArrayList<Node> nodeList;
+	public String queryVarName;
 
 	public RejectionSample(ArrayList<Node> nodeList) {
 		this.nodeList = nodeList;
@@ -17,6 +17,7 @@ public class RejectionSample {
 		for(int i = 0; i < nodeList.size(); i++) {
 			if(nodeList.get(i).status.contains("?")) {
 				queryVarName = nodeList.get(i).name;
+				break;
 			}
 		}
 	}
@@ -67,7 +68,6 @@ public class RejectionSample {
 	public static double randNodeValue() {
 
 		double randomValue = Math.random();
-		System.out.println(randomValue);
 		return randomValue;
 	}
 	
@@ -98,8 +98,13 @@ public class RejectionSample {
 			
 			for(int j = 0; j < node.parents.size(); j++) {
 				Node currentParent = node.parents.get(j);
+				String parentName = node.parents.get(j).name;
+				for(int m = 0; m < nodeList.size(); m++) {
+					if(nodeList.get(m).name.contains(parentName)) {
+						currentParent = nodeList.get(m);
+					}
+				}
 				if(event.values.containsKey(currentParent.name)) {
-					continue;
 				} else {
 					event = priorSampleHelper(event, currentParent);
 				}
@@ -143,7 +148,11 @@ public class RejectionSample {
 		
 		double magnitude = Math.sqrt(scale0 + scale1);
 		
-		return vector[1] / magnitude;
+		if(magnitude != 0) {
+			return vector[1] / magnitude;
+		} else {
+			return 0;
+		}
 	}
 
 }
