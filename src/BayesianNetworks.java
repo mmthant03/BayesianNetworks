@@ -22,8 +22,10 @@ public class BayesianNetworks {
     		return;
     	} else if(args.length < 2) {
     		System.out.println("Missing query file argument");
+    		return;
 		} else if(args.length < 3) {
     		System.out.println("Missing number of samples to be generated");
+    		return;
 		}
     	// define variables
     	String inputFileName = args[0];
