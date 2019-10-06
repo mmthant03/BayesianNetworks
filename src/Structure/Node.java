@@ -3,13 +3,16 @@ package Structure;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * This class represents information of each node given in the network file
+ */
 public class Node {
-    public String name;
-    public int index;
-    public double value;
-    public ArrayList<Node> parents;
-    public ArrayList<TableEntry> cpt;
-    public String status;
+    public String name;  // name of the node
+    public int index; // index number of the node
+    public double value; // value randomly assigned by prior sampling
+    public ArrayList<Node> parents; // parents of the node
+    public ArrayList<TableEntry> cpt; // conditional probability table of the node
+    public String status; // status of the node such as t,f,?,-
 
     public Node() {
         this.name = "";

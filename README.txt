@@ -1,6 +1,12 @@
 README.txt
 Robert Dutile & Myo Min Thant
 
+How to run:
+The main driver class is src/BayesianNetworks.java.
+Run this class with three parameter; networkfile, queryfile and sample size.
+If it is run successfully, the Bayesian Networks will be shown in the console along with the results from two sampling method.
+
+
 Our project is split into 3 packages.
 
 First is the default package, which contains the main method, and one helper function.

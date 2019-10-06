@@ -6,10 +6,13 @@ import Structure.TableEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * This class represents the likelihood weighting sampling
+ */
 public class LikelihoodWeight {
 
-    public ArrayList<Node> nodeList = new ArrayList<Node>();
-    public String queryVarName;
+    public ArrayList<Node> nodeList = new ArrayList<Node>(); // all the node information
+    public String queryVarName; // the particular node that is to be queried given by the query file
 
     // constructor for LikelihoodWeight class
     // it receives all the node information

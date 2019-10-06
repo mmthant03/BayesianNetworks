@@ -6,10 +6,13 @@ import Structure.Event;
 import Structure.Node;
 import Structure.TableEntry;
 
+/**
+ * This class represents the rejection sampling.
+ */
 public class RejectionSample {
 	
-	public ArrayList<Node> nodeList;
-	public String queryVarName;
+	public ArrayList<Node> nodeList; // all the nodes information
+	public String queryVarName; // the particular node that is to be queried given by the query file
 
 	public RejectionSample(ArrayList<Node> nodeList) {
 		this.nodeList = nodeList;

@@ -2,11 +2,14 @@ package Structure;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents each entry inside the conditional probability table
+ */
 public class TableEntry {
-    public int index;
-    public double probability;
-    public int[] binary;
-    public int numOfParent;
+    public int index; // index of an entry of CPT table
+    public double probability; // probability of that entry
+    public int[] binary; // binary representation of that entry
+    public int numOfParent; // num of parents of the node
 
     public TableEntry() {
     }
@@ -19,6 +22,7 @@ public class TableEntry {
         this.saveAsBinary(index);
     }
 
+    // this function will transform index to binary representation
     public void saveAsBinary(int num) {
         String b = Integer.toBinaryString(num);
         if (num == 0) {
@@ -38,6 +42,7 @@ public class TableEntry {
         }
     }
 
+    // for debugging purpose, this will return a string of binary representation
     public String binString() {
         String b = "";
         for (int i : this.binary) {

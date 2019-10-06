@@ -2,6 +2,9 @@ package Structure;
 
 import java.util.HashMap;
 
+/**
+ * This class is to track each event perform during sampling
+ */
 public class Event {
 	
 	public HashMap<String, Boolean> values;
