@@ -157,6 +157,7 @@ public class BayesianNetworks {
 		double rejectResult = rs.rejectionSampling(num_samples);
 		
 		System.out.println("By Rejection Sampling, Probability of " + rs.queryVarName + " being true : " + rejectResult);
+
 		
 		return;
     }
